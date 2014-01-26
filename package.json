@@ -18,6 +18,7 @@
     "commander": "~2.1.0",
     "md5": "~1.0.0",
     "uglifyjs": "~2.3.6",
-    "uglify-js": "~2.4.12"
+    "uglify-js": "~2.4.12",
+    "request": "~2.33.0"
   }
 }
