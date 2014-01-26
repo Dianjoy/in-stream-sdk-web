@@ -1,0 +1,57 @@
+#! /usr/bin/env node --harmony
+
+/**
+ * 传入一个参数为新版本号，未传入时则小数点后递增
+ */
+var co = require('co');
+var exec  = require('co-exec');
+var assert = require('assert');
+var fs = require('co-fs');
+var crypto = require('crypto');
+var request = require('request');
+
+function coRequest(opts) {
+  return function (done) {
+    request(opts, function (err, response, body) {
+      var result = response;
+      result.body = body;
+      done(err, result);
+    })
+  }
+}
+
+var v = process.argv[2];
+
+function bump(v) {
+  var m = v.match(/\.(\d+)$/);
+  if (m) {
+    return parseInt(v, 10) + '.' + (parseInt(m[1], 10) + 1);
+  }
+  return v + '.1';
+}
+
+co(function* () {
+  //var v = (Number(version) + c).toFixed(1);
+  if (v) {
+    yield fs.writeFile('VERSION', v);
+  } else {
+    var content = (yield fs.readFile('VERSION', 'utf8')).replace(/\n/, '');
+    v = bump(content);
+    yield fs.writeFile('VERSION', v);
+  }
+  var make = yield exec('make');
+  console.log(make);
+  var commit = yield exec('git ci -a -m "' + v + '"' );
+  console.log(commit);
+  var push = yield exec('git push');
+  console.log(push);
+  var result = yield coRequest('http://www.dianjoy.com/salt_cmd/salt_update_in_stream_sdk.php');
+  console.log(result.body);
+  var url = 'http://www.dianjoy.com/in-stream-sdk/dianjou_ad_v' + v + '.js';
+  console.log('=> ' + url);
+  var response = yield coRequest(url);
+  if (response.statusCode !== 200) throw new Error('Requset failed ' + response.statusCode);
+  console.log(this);
+  //var out = yield
+
+})();
