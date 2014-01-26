@@ -1,8 +1,9 @@
 SRC =$(wildcard src/*.js)
 
-build: $(SRC)
+build: $(SRC) VERSION
 	@jsmerge
-	@uglifyjs build/build.js > build/build.min.js
+	@echo \/\/version:`cat VERSION` > build/build.min.js
+	@./node_modules/.bin/uglifyjs build/build.js >> build/build.min.js
 
 components: component.json
 	@component install --dev

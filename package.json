@@ -11,6 +11,13 @@
   "dependencies": {
     "superagent": "~0.16.0",
     "cheerio": "~0.13.1",
-    "node-parallel": "~0.1.5"
+    "node-parallel": "~0.1.5",
+    "co-exec": "~1.1.0",
+    "co": "~3.0.2",
+    "co-fs": "~1.1.1",
+    "commander": "~2.1.0",
+    "md5": "~1.0.0",
+    "uglifyjs": "~2.3.6",
+    "uglify-js": "~2.4.12"
   }
 }
