@@ -3,7 +3,6 @@ SRC =$(wildcard src/*.js)
 build: $(SRC)
 	@jsmerge
 	@uglifyjs build/build.js > build/build.min.js
-	@cp build/build.min.js ad.js
 
 components: component.json
 	@component install --dev
@@ -14,4 +13,4 @@ start:
 clean:
 	rm -fr build components
 
-.PHONY: clean start
+.PHONY: clean start upgrade

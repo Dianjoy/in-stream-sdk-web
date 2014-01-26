@@ -1,0 +1,4 @@
+#!/bin/bash
+
+VERSION=`cat VERSION`
+cp build/build.min.js dianjou_ad_v$VERSION.js
