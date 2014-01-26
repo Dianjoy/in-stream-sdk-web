@@ -51,7 +51,7 @@ co(function* () {
   console.log('=> ' + url);
   var response = yield coRequest(url);
   if (response.statusCode !== 200) throw new Error('Requset failed ' + response.statusCode);
-  console.log(this);
+  console.log(response.body);
   //var out = yield
 
 })();
