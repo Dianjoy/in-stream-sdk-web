@@ -45,13 +45,19 @@ co(function* () {
   console.log(commit);
   var push = yield exec('git push');
   console.log(push);
-  var result = yield coRequest('http://www.dianjoy.com/salt_cmd/salt_update_in_stream_sdk.php');
+  var opts = {
+    url: 'http://www.dianjoy.com/salt_cmd/salt_update_in_stream_sdk.php',
+    headers: {
+      'Connection': 'keep-alive'
+    }
+  }
+  var result = yield coRequest(opts);
   console.log(result.body);
-  var url = 'http://www.dianjoy.com/in-stream-sdk/dianjou_ad_v' + v + '.js';
+  var url = 'http://www.dianjoy.com/in-stream-sdk/dianjoy_ad_v' + v + '.js';
   console.log('=> ' + url);
   var response = yield coRequest(url);
   if (response.statusCode !== 200) throw new Error('Requset failed ' + response.statusCode);
-  console.log(response.body);
+  console.log(response.body.split('\n')[0]);
   //var out = yield
 
 })();
