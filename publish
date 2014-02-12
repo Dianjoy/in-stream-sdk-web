@@ -51,10 +51,8 @@ co(function* () {
       'Connection': 'keep-alive'
     }
   }
-  var s = (new Date()).getTime();
   var result = yield coRequest(opts);
-  var e = (new Date()).getTime();
-  console.log(e - s);
+  console.log('=> ' + opts.url);
   console.log(result.body);
   var url = 'http://www.dianjoy.com/in-stream-sdk/dianjoy_ad_v' + v + '.js';
   console.log('=> ' + url);

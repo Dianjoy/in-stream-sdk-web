@@ -1,3 +1,4 @@
+//从网上抓取笑话列表
 var request = require ('superagent');
 var parallel = require('node-parallel');
 
