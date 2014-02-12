@@ -183,7 +183,6 @@ function jsonp(url, params, fn){
   // add qs component
   url += (url.indexOf('?') !== -1 ? '&' : '?') + serialize(params);
   url = url.replace('?&', '?');
-  console.log(url);
 
   // create script
   script = document.createElement('script');
@@ -205,8 +204,8 @@ api.list(function(err, data) {
   if (err) throw err;
   var ads = data.offers;
   var divs = document.querySelectorAll('.sexy_ad');
-  console.log('ads length:' + ads.length);
-  console.log('divs length:' + divs.length);
+  //console.log('ads length:' + ads.length);
+  //console.log('divs length:' + divs.length);
   for (var i = 0; i < divs.length; i++) {
     if (ads[i]) {
       addAd(divs[i], ads[i]);
