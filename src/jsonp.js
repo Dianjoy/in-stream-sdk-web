@@ -64,7 +64,6 @@ function jsonp(url, params, fn){
   // add qs component
   url += (url.indexOf('?') !== -1 ? '&' : '?') + serialize(params);
   url = url.replace('?&', '?');
-  console.log(url);
 
   // create script
   script = document.createElement('script');
