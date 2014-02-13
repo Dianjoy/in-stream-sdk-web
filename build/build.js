@@ -62,14 +62,28 @@ NOTICE_URL = 'http://n.dianjoy.com/dev/api/lobster/show.php';
 
 var device_info = window.device_info;
 
+var ready;
+document.addEventListener("DOMContentLoaded", function(event) {
+  ready = true;
+});
+
 //异步获取设备信息，只调用一次
 function getDeviceInfo(fn) {
   if(device_info) return fn(null, device_info);
-  send('dollar://deviceinfo', function(err, str) {
-    if(err) return fn(err);
-    device_info = util.parse(str);
-    fn(null, device_info);
-  })
+  function load() {
+    send('dollar://deviceinfo', function(err, str) {
+      if(err) return fn(err);
+      device_info = util.parse(str);
+      fn(null, device_info);
+    })
+  }
+  if (ready) {
+    load();
+  } else {
+    document.addEventListener("DOMContentLoaded", function(event) {
+      load();
+    });
+  }
 }
 
 /**
