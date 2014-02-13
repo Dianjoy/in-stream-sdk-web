@@ -8,7 +8,7 @@ var LIST_URL, NOTICE_URL;
 LIST_URL = 'http://n.dianjoy.com/dev/api/lobster/adlist.php';
 NOTICE_URL = 'http://n.dianjoy.com/dev/api/lobster/show.php';
 
-var device_info;
+var device_info = window.device_info;
 
 //异步获取设备信息，只调用一次
 function getDeviceInfo(fn) {
