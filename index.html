@@ -104,6 +104,12 @@
     </div>
     <script src="http://www.dianjoy.com/in-stream-sdk/dianjou_ad_v1.js"></script>
     <script type="text/javascript">
+      setTimeout(function() {
+        var container = document.getElementById('container');
+        var node = document.createElement('div');
+        node.className = 'sexy_ad';
+        container.appendChild(node);
+      }, 10000)
     </script>
   </body>
 </html>

@@ -4,18 +4,19 @@ var throttle = util.throttle;
 var api = require('api');
 var noticed = [];
 var advs = [];
+var all_advs = [];
 var styles = window.getComputedStyle;
 
 //获取广告列表
 api.list(function(err, data) {
   if (err) throw err;
-  var ads = data.offers;
+  all_advs = data.offers;
   var divs = document.querySelectorAll('.sexy_ad');
   //console.log('ads length:' + ads.length);
   //console.log('divs length:' + divs.length);
   for (var i = 0; i < divs.length; i++) {
-    if (ads[i]) {
-      addAd(divs[i], ads[i]);
+    if (all_advs[i]) {
+      addAd(divs[i], all_advs[i]);
     }
   }
 })
@@ -27,6 +28,7 @@ api.list(function(err, data) {
 
 function checkAd(ad) {
   var id = ad.ad_id;
+  //return if noticed
   if (noticed.indexOf(id) !== -1) return;
   var node = ad.node;
   var shown = inviewport(node, 20);
@@ -40,7 +42,17 @@ function checkAd(ad) {
 }
 
 window.addEventListener('scroll', throttle(function() {
-  for (var i = 0; i < advs.length; i++) {
+  var divs = document.querySelectorAll('.sexy_ad');
+  for (var i = 0; i < divs.length; i++) {
+    var node = divs[i];
+    //ad not included
+    if (node.childNodes.length === 0) {
+      var adv = all_advs[advs.length];
+      if (!ad) return;
+      addAd(node, adv)
+    }
+  }
+  for ( i = 0; i < advs.length; i++) {
     var ad = advs[i];
     checkAd(ad);
   }
@@ -66,8 +78,8 @@ function addAd(node, ad) {
     api.download(ad.download);
   })
   ad.node = img;
+  advs.push(ad);
   img.onload = function() {
-    advs.push(ad);
     checkAd(ad);
   }
 }
