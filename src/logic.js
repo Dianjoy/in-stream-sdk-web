@@ -48,7 +48,7 @@ window.addEventListener('scroll', throttle(function() {
     //ad not included
     if (node.childNodes.length === 0) {
       var adv = all_advs[advs.length];
-      if (!ad) return;
+      if (!adv) return;
       addAd(node, adv)
     }
   }
