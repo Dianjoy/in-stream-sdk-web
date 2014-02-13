@@ -60,7 +60,7 @@ var LIST_URL, NOTICE_URL;
 LIST_URL = 'http://n.dianjoy.com/dev/api/lobster/adlist.php';
 NOTICE_URL = 'http://n.dianjoy.com/dev/api/lobster/show.php';
 
-var device_info;
+var device_info = window.device_info;
 
 //异步获取设备信息，只调用一次
 function getDeviceInfo(fn) {
@@ -242,7 +242,7 @@ window.addEventListener('scroll', throttle(function() {
     //ad not included
     if (node.childNodes.length === 0) {
       var adv = all_advs[advs.length];
-      if (!ad) return;
+      if (!adv) return;
       addAd(node, adv)
     }
   }

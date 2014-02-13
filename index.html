@@ -50,8 +50,6 @@
         visibility:hidden;
       }
     </style>
-    <!-- 不是必须的 -->
-    <script src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
   </head>
   <body>
     <div id="container">
@@ -102,14 +100,40 @@
       <div class="sexy_ad">
       </div>
     </div>
+    <script>
+      window.device_info = {
+        'device_id' : '865316012765495',
+        imsi: '460025010714767',
+        device_name: 'M040',
+        os_type: 'android',
+        os_version: '4.1.1',
+        country_code: 'CN',
+        language: 'zh',
+        app_id: '072cb4d9d9d5dfd23ed2981e5e33fe59',
+        app_package_name: 'com.dlnetwork.example',
+        cid: 'default',
+        app_version: '1.0.5',
+        appvc: '105',
+        library_version: '1.5.0',
+        screen_density: '320',
+        screen_layout_size: '2',
+        screen_width: '800',
+        screen_height: '1280',
+        net: 'WIFI',
+        app_id: '072cb4d9d9d5dfd23ed2981e5e33fe59'
+      }
+    </script>
+    <!--
     <script src="http://www.dianjoy.com/in-stream-sdk/dianjou_ad_v1.js"></script>
+    -->
+    <script src="build/build.min.js"></script>
     <script type="text/javascript">
       setTimeout(function() {
         var container = document.getElementById('container');
         var node = document.createElement('div');
         node.className = 'sexy_ad';
         container.appendChild(node);
-      }, 10000)
+      }, 4000)
     </script>
   </body>
 </html>
