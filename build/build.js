@@ -67,7 +67,8 @@ function getDeviceInfo(fn) {
   if(device_info) return fn(null, device_info);
   send('dollar://deviceinfo', function(err, str) {
     if(err) return fn(err);
-    fn(null, util.parse(str));
+    device_info = util.parse(str);
+    fn(null, device_info);
   })
 }
 
