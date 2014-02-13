@@ -41,7 +41,7 @@ co(function* () {
   }
   var make = yield exec('make');
   console.log(make);
-  var commit = yield exec('git ci -a -m "' + v + '"' );
+  var commit = yield exec('git commit -a -m "' + v + '"' );
   console.log(commit);
   var push = yield exec('git push');
   console.log(push);
